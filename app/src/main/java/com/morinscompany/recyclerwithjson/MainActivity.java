@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
     public static final String EXTRA_URL = "imageUrl";
     public static final String EXTRA_CREATOR = "creatorName";
     public static final String EXTRA_LIKES = "likeCount";
+    public static final String DOWNLOADS = "downloads";
 
     private RecyclerView mRecyclerView;
     private ExampleAdapter mExampleAdapter;
@@ -60,8 +61,9 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
                                 String creatorName = hit.getString("user");
                                 String imageUrl = hit.getString("webformatURL");
                                 int likeCount = hit.getInt("likes");
+                                int downloads = hit.getInt("downloads");
 
-                                mExampleList.add(new ExampleItem(imageUrl, creatorName, likeCount));
+                                mExampleList.add(new ExampleItem(imageUrl, creatorName, likeCount, downloads));
                             }
 
                             mExampleAdapter = new ExampleAdapter(MainActivity.this, mExampleList);
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
         detailIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
         detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
         detailIntent.putExtra(EXTRA_LIKES, clickedItem.getLikeCount());
+        detailIntent.putExtra(DOWNLOADS, clickedItem.getDownloadsCount());
 
         startActivity(detailIntent);
     }

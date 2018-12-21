@@ -45,9 +45,11 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         String imageUrl = currentItem.getImageUrl();
         String creatorName = currentItem.getCreator();
         int likeCount = currentItem.getLikeCount();
+        int downloadsCount = currentItem.getDownloadsCount();
 
         holder.mTextViewCreator.setText(creatorName);
         holder.mTextViewLikes.setText("Likes: " + likeCount);
+        holder.mTextViewDownloads.setText("Downloads: " + downloadsCount );
         Picasso.with(mContext).load(imageUrl).fit().centerInside().into(holder.mImageView);
     }
 
@@ -60,12 +62,14 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         public ImageView mImageView;
         public TextView mTextViewCreator;
         public TextView mTextViewLikes;
+        public TextView mTextViewDownloads;
 
         public ExampleViewHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.image_view);
             mTextViewCreator = itemView.findViewById(R.id.text_view_creator);
             mTextViewLikes = itemView.findViewById(R.id.text_view_likes);
+            mTextViewDownloads = itemView.findViewById(R.id.text_view_downloads);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
